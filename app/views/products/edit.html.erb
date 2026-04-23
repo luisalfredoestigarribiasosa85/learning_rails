@@ -1,0 +1,20 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg">
+        <div class="card-body p-5">
+          <h1 class="card-title mb-4 text-center">
+            <i class="fas fa-edit me-2"></i>Edit Product
+          </h1>
+          
+          <%= render "shared/form", product: @product %>
+          
+          <div class="mt-4 d-flex justify-content-between">
+            <%= link_to "← Back", products_path, class: "btn btn-secondary btn-lg" %>
+            <%= link_to "Delete", product_path(@product), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-lg" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
