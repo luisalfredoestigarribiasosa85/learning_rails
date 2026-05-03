@@ -1,0 +1,27 @@
+<h2 class="text-2xl font-bold mb-4 text-center">Log in</h2>
+
+<div class="container mt-4 rounded border border-secondary p-4">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field mb-4">
+      <p><%= f.label :email, class: "block text-sm font-medium text-gray-700" %></p>
+      <p><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %></p>
+    </div>
+
+    <div class="field mb-4">
+      <p><%= f.label :password, class: "block text-sm font-medium text-gray-700" %></p>
+      <p><%= f.password_field :password, autocomplete: "current-password", class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %></p>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field mb-4">
+        <p><%= f.check_box :remember_me, class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" %></p>
+        <p><%= f.label :remember_me, class: "block text-sm font-medium text-gray-700" %></p>
+      </div>
+    <% end %>
+
+    <div class="actions mb-4">
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+<%= render "devise/shared/links" %>

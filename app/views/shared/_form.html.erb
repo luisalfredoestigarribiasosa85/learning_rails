@@ -1,34 +1,24 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card shadow-sm">
-        <div class="card-body p-5">
-          <%= form_with(model: @product, local: true) do |form| %>
-            <% if @product.errors.any? %>
-              <div id="error_explanation" class="alert alert-danger alert-dismissible fade show" role="alert">
-                <h5 class="alert-heading">
-                  <%= pluralize(@product.errors.count, "error") %> prohibited this record from being saved:
-                </h5>
-                <ul class="mb-0">
-                  <% @product.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                  <% end %>
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-            <% end %>
-
-            <div class="mb-3">
-              <%= form.label :name, class: "form-label" %>
-              <%= form.text_field :name, class: "form-control form-control-lg", placeholder: "Enter product name" %>
-            </div>
-
-            <div class="d-grid gap-2 mt-4">
-              <%= form.submit class: "btn btn-primary btn-lg" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
+<%= form_with(model: product) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert" aria-live="assertive">
+      <h2 class="h6 mb-2">
+        <%= pluralize(product.errors.count, "error") %> prevented this product from being saved:
+      </h2>
+      <ul class="mb-0 ps-3">
+        <% product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= form.label :name, class: "form-label fw-semibold" %>
+    <%= form.text_field :name, class: "form-control form-control-lg", placeholder: "e.g. Wireless Keyboard", autocomplete: "off", autofocus: true %>
+    <div class="form-text">Use a clear and unique product name.</div>
   </div>
-</div>
+
+  <div class="d-grid d-sm-flex gap-2 justify-content-sm-end">
+    <%= form.submit class: "btn btn-primary btn-lg px-4" %>
+  </div>
+<% end %>

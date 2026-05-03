@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Learning Rails</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item"><%= link_to "Products", products_path, class: "nav-link" %></li>
+      <% if user_signed_in? && current_user.admin? %>
+        <li class="nav-item"><%= link_to "New Product", new_product_path, class: "nav-link" %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="navbar-collapse collapse justify-content-end">
+    <% if user_signed_in? %>
+      <span class="navbar-text me-3">
+        <%= current_user.email %> <span class="badge bg-<%= current_user.admin? ? 'danger' : 'secondary' %>"><%= current_user.role %></span>
+      </span>
+      <p class="navbar-text"><%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %></p>
+    <% else %>
+      <p class="navbar-text"><%= link_to "Login", new_user_session_path, class: "nav-link" %></p>
+      <p class="navbar-text"><%= link_to "Sign up", new_user_registration_path, class: "nav-link" %></p>
+    <% end %>
+  </div>
+</nav>

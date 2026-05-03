@@ -1,15 +1,16 @@
-<div class="container mt-4">
+<div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-8">
-      <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-          <h1 class="h4 mb-0">New Product</h1>
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-0 pt-4 px-4 px-md-5">
+          <p class="text-secondary mb-1">Catalog</p>
+          <h1 class="h3 mb-0 fw-bold">New Product</h1>
         </div>
-        <div class="card-body">
+        <div class="card-body p-4 p-md-5 pt-3">
           <%= render "shared/form", product: @product %>
         </div>
-        <div class="card-footer text-end">
-          <%= link_to "Back", products_path, class: "btn btn-outline-secondary" %>
+        <div class="card-footer bg-white border-0 px-4 px-md-5 pb-4">
+          <%= link_to "Back to products", products_path, class: "btn btn-outline-secondary" %>
         </div>
       </div>
     </div>

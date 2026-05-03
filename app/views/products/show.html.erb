@@ -1,52 +1,45 @@
-<div class="container py-5">
+<div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-8">
-      <!-- Breadcrumb Navigation -->
       <nav aria-label="breadcrumb" class="mb-4">
-        <ol class="breadcrumb bg-light p-3 rounded">
+        <ol class="breadcrumb bg-white border rounded-3 p-3 mb-0">
           <li class="breadcrumb-item"><%= link_to "Products", products_path %></li>
           <li class="breadcrumb-item active" aria-current="page"><%= @product.name %></li>
         </ol>
       </nav>
 
-      <!-- Product Card -->
       <div class="card shadow-sm border-0 mb-4">
-        <div class="card-body p-5">
-          <h1 class="card-title display-5 fw-bold mb-2"><%= @product.name %></h1>
-          <p class="text-muted mb-4">Product ID: <code><%= @product.id %></code></p>
-          
-          <hr class="my-4">
-          
-          <!-- Product Details Section -->
-          <div class="mb-5">
-            <h5 class="fw-semibold text-secondary mb-3">Product Details</h5>
-            <div class="row">
+        <div class="card-body p-4 p-md-5">
+          <h1 class="card-title h2 fw-bold mb-2"><%= @product.name %></h1>
+          <p class="text-secondary mb-4">Product ID: <code><%= @product.id %></code></p>
+
+          <div class="mb-4">
+            <h2 class="h6 fw-semibold text-secondary text-uppercase mb-3">Details</h2>
+            <div class="row g-3">
               <div class="col-md-6">
-                <p class="mb-2"><span class="text-muted">Created:</span></p>
-                <p class="fw-semibold"><%= @product.created_at.strftime("%B %d, %Y") %></p>
+                <p class="mb-1 text-secondary">Created</p>
+                <p class="fw-semibold mb-0"><%= @product.created_at.strftime("%B %d, %Y") %></p>
               </div>
               <div class="col-md-6">
-                <p class="mb-2"><span class="text-muted">Last Updated:</span></p>
-                <p class="fw-semibold"><%= @product.updated_at.strftime("%B %d, %Y") %></p>
+                <p class="mb-1 text-secondary">Last updated</p>
+                <p class="fw-semibold mb-0"><%= @product.updated_at.strftime("%B %d, %Y") %></p>
               </div>
             </div>
           </div>
 
-          <hr class="my-4">
-
-          <!-- Actions -->
-          <div class="d-flex gap-2 flex-wrap">
-            <%= link_to '✏️ Edit', edit_product_path(@product), class: 'btn btn-primary btn-lg' %>
-            <%= button_to '🗑️ Delete', product_path(@product), method: :delete, data: { turbo_confirm: 'Are you sure? This action cannot be undone.' }, class: 'btn btn-danger btn-lg' %>
-            <%= link_to '← Back to Products', products_path, class: 'btn btn-outline-secondary btn-lg' %>
+          <div class="d-grid d-sm-flex gap-2 flex-wrap">
+            <% if current_user.admin? %>
+              <%= link_to "Edit", edit_product_path(@product), class: "btn btn-primary" %>
+              <%= button_to "Delete", product_path(@product), method: :delete, data: { turbo_confirm: "Delete this product permanently?" }, class: "btn btn-outline-danger" %>
+            <% end %>
+            <%= link_to "Back to products", products_path, class: "btn btn-outline-secondary" %>
           </div>
         </div>
       </div>
 
-      <!-- Info Alert -->
-      <div class="alert alert-info border-0" role="alert">
-        <h6 class="alert-heading">💡 Tip</h6>
-        <p class="mb-0">You can edit this product's information or delete it permanently using the buttons above.</p>
+      <div class="alert alert-light border" role="note">
+        <h2 class="h6 alert-heading mb-2">Tip</h2>
+        <p class="mb-0 text-secondary">Keep product names consistent so they are easier to find and manage later.</p>
       </div>
     </div>
   </div>

@@ -1,17 +1,16 @@
-<div class="container mt-5">
+<div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card shadow-lg">
-        <div class="card-body p-5">
-          <h1 class="card-title mb-4 text-center">
-            <i class="fas fa-edit me-2"></i>Edit Product
-          </h1>
-          
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-0 pt-4 px-4 px-md-5">
+          <p class="text-secondary mb-1">Catalog</p>
+          <h1 class="h3 mb-0 fw-bold">Edit Product</h1>
+        </div>
+        <div class="card-body p-4 p-md-5 pt-3">
           <%= render "shared/form", product: @product %>
-          
-          <div class="mt-4 d-flex justify-content-between">
-            <%= link_to "← Back", products_path, class: "btn btn-secondary btn-lg" %>
-            <%= link_to "Delete", product_path(@product), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-lg" %>
+          <div class="mt-4 d-grid d-sm-flex justify-content-sm-between align-items-sm-center gap-2">
+            <%= link_to "Back to products", products_path, class: "btn btn-outline-secondary" %>
+            <%= button_to "Delete product", product_path(@product), method: :delete, data: { turbo_confirm: "Delete this product permanently?" }, class: "btn btn-outline-danger" %>
           </div>
         </div>
       </div>
