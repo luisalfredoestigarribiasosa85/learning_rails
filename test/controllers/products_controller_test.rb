@@ -26,15 +26,26 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test "admin should create product with valid params" do
     sign_in @admin
     assert_difference("Product.count", 1) do
-      post products_url, params: { product: { name: "Mouse" } }
+      post products_url, params: { product: { name: "Mouse", price: 29.99, stock: 50, description: "A great mouse" } }
     end
     assert_redirected_to product_url(Product.last)
+    assert_equal "Mouse", Product.last.name
+    assert_equal 29.99, Product.last.price
+    assert_equal 50, Product.last.stock
   end
 
   test "admin should not create product with invalid params" do
     sign_in @admin
     assert_no_difference("Product.count") do
-      post products_url, params: { product: { name: "" } }
+      post products_url, params: { product: { name: "", price: 29.99 } }
+    end
+    assert_response :unprocessable_entity
+  end
+
+  test "admin should not create product without price" do
+    sign_in @admin
+    assert_no_difference("Product.count") do
+      post products_url, params: { product: { name: "Mouse" } }
     end
     assert_response :unprocessable_entity
   end
@@ -53,9 +64,11 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test "admin should update product with valid params" do
     sign_in @admin
-    patch product_url(@product), params: { product: { name: "Updated Product" } }
+    patch product_url(@product), params: { product: { name: "Updated Product", price: 129.99, stock: 25 } }
     assert_redirected_to product_url(@product)
     assert_equal "Updated Product", @product.reload.name
+    assert_equal 129.99, @product.price
+    assert_equal 25, @product.stock
   end
 
   test "admin should destroy product" do
@@ -92,7 +105,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test "regular user should not create product" do
     sign_in @regular_user
     assert_no_difference("Product.count") do
-      post products_url, params: { product: { name: "Mouse" } }
+      post products_url, params: { product: { name: "Mouse", price: 29.99 } }
     end
     assert_redirected_to products_path
     assert_equal "You don't have permission to perform this action.", flash[:alert]

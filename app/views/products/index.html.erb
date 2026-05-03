@@ -17,15 +17,40 @@
         <table class="table table-hover align-middle mb-0">
           <thead class="table-light">
           <tr>
-            <th class="col-md-6 fw-semibold">Name</th>
-            <th class="col-md-6 text-end fw-semibold">Actions</th>
+            <th class="fw-semibold">Name</th>
+            <th class="fw-semibold text-end">Price</th>
+            <th class="fw-semibold text-center">Stock</th>
+            <th class="fw-semibold text-center">Status</th>
+            <th class="text-end fw-semibold">Actions</th>
           </tr>
         </thead>
         <tbody>
           <% @products.each do |product| %>
-            <tr>
+            <tr class="<%= 'text-muted opacity-50' unless product.active? %>">
               <td class="py-3">
                 <h5 class="mb-0 fw-semibold"><%= product.name %></h5>
+                <% if product.description.present? %>
+                  <small class="text-secondary d-block text-truncate" style="max-width: 300px;"><%= product.description %></small>
+                <% end %>
+              </td>
+              <td class="py-3 text-end">
+                <span class="fw-bold text-primary"><%= product.formatted_price %></span>
+              </td>
+              <td class="py-3 text-center">
+                <% if product.stock_status == "out_of_stock" %>
+                  <span class="badge bg-danger">Out of stock</span>
+                <% elsif product.stock_status == "low_stock" %>
+                  <span class="badge bg-warning text-dark"><%= product.stock %> Low</span>
+                <% else %>
+                  <span class="badge bg-success"><%= product.stock %> In stock</span>
+                <% end %>
+              </td>
+              <td class="py-3 text-center">
+                <% if product.active? %>
+                  <span class="badge bg-success">Active</span>
+                <% else %>
+                  <span class="badge bg-secondary">Inactive</span>
+                <% end %>
               </td>
               <td class="py-3 text-end">
                 <div class="d-inline-flex gap-2 flex-wrap justify-content-end">

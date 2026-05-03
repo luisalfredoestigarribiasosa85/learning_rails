@@ -18,6 +18,32 @@
     <div class="form-text">Use a clear and unique product name.</div>
   </div>
 
+  <div class="mb-4">
+    <%= form.label :description, class: "form-label fw-semibold" %>
+    <%= form.text_area :description, class: "form-control", rows: 4, placeholder: "Describe the product features, specifications, etc." %>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-6 mb-3 mb-md-0">
+      <%= form.label :price, class: "form-label fw-semibold" %>
+      <div class="input-group">
+        <span class="input-group-text">$</span>
+        <%= form.number_field :price, class: "form-control", step: "0.01", min: "0", placeholder: "0.00" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <%= form.label :stock, class: "form-label fw-semibold" %>
+      <%= form.number_field :stock, class: "form-control", min: "0", step: "1", placeholder: "0" %>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <div class="form-check form-switch">
+      <%= form.check_box :active, class: "form-check-input", role: "switch" %>
+      <%= form.label :active, "Active (available for sale)", class: "form-check-label fw-semibold" %>
+    </div>
+  </div>
+
   <div class="d-grid d-sm-flex gap-2 justify-content-sm-end">
     <%= form.submit class: "btn btn-primary btn-lg px-4" %>
   </div>

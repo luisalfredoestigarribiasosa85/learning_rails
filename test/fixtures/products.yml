@@ -1,7 +1,27 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 laptop:
-  name: Laptop
+  name: Laptop Pro X1
+  description: High-performance laptop for professionals
+  price: 999.99
+  stock: 15
+  active: true
 
 mouse:
-  name: Mouse
+  name: Wireless Mouse
+  description: Ergonomic wireless mouse
+  price: 29.99
+  stock: 50
+  active: true
+
+monitor:
+  name: 4K Monitor
+  description: Ultra-sharp display
+  price: 299.99
+  stock: 2
+  active: true
+
+out_of_stock:
+  name: Discontinued Item
+  description: No longer available
+  price: 49.99
+  stock: 0
+  active: false
